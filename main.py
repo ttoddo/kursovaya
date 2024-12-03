@@ -52,6 +52,12 @@ async def process_cancel_command(message: Message):
                             'если хотите повторить - напишите')
 
 
+
+@dp.message(lambda message: message.photo)
+async  def process_photo_file(message: Message):
+    await message.answer('Ты чо, какие фотки, я бот')
+
+
 @dp.message(F.text.lower().in_(['да', 'давай', 'сыграем', 'игра',
                                 'играть', 'хочу играть']))
 async def process_positive_answer(message: Message):
