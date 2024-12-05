@@ -3,6 +3,7 @@ from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
 from lexicon.lexicon import user
+from config.config import load_config
 
 
 def get_random_number() -> int:
@@ -10,7 +11,7 @@ def get_random_number() -> int:
 
 
 BOT_TOKEN = '7658388854:AAGSutjrnjZi0yaKc4XAVzNR217EVxjunmo'
-
+config = load_config('.env')
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
@@ -52,9 +53,13 @@ async def process_cancel_command(message: Message):
                             'если хотите повторить - напишите')
 
 
+@dp.message(F.text == "Привет, гигащит")
+async def process_giga_command(message: Message):
+    await message.answer("Да, теперь я гигащит")
+
 
 @dp.message(lambda message: message.photo)
-async  def process_photo_file(message: Message):
+async def process_photo_file(message: Message):
     await message.answer('Ты чо, какие фотки, я бот')
 
 
